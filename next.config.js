@@ -1,6 +1,6 @@
 module.exports = {
   images: {
-    domains: ['a0.muscache.com', 'upload.wikimedia.org']
+    domains: ['a0.muscache.com', 'upload.wikimedia.org', 'www.pikpng.com']
   },
   env: {
     mapbox_key:

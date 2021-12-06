@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/dist/client/router';
 //styling
 import {
@@ -48,39 +48,73 @@ function Header({ placeholder }) {
     });
   };
 
+  //nav bar animation
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        setShow(true);
+      } else setShow(false);
+    });
+    return () => {
+      window.removeEventListener('scroll', null);
+    };
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10">
-      <div className="relative flex items-center h-6 md:h-7 cursor-pointer my-auto">
-        <Image
-          src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg"
-          layout="fill"
-          objectFit="contain"
-          objectPosition="left"
-          onClick={() => router.push('/')}
-        />
+    <header
+      className={`fixed flex justify-center top-0 z-50  px-5 py-2 md:py-4 md:px-10 w-full ${
+        show && 'bg-white shadow-md transition-all ease-in'
+      }`}
+    >
+      <div className="relative sm:flex-1 h-7 cursor-pointer my-auto">
+        {show ? (
+          <Image
+            src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg"
+            layout="fill"
+            objectFit="contain"
+            objectPosition="left"
+            onClick={() => router.push('/')}
+          />
+        ) : (
+          <Image
+            src="/LogoAirbnb.png"
+            layout="fill"
+            objectFit="contain"
+            objectPosition="left"
+            onClick={() => router.push('/')}
+          />
+        )}
       </div>
 
-      <div className="flex items-center rounded-full py-2 md:border-2 md:shadow-sm ">
+      <div className="flex flex-1 rounded-full py-2 border-2 shadow-sm justify-between">
         <input
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
-          className="md:pl-5 bg-transparent outline-none flex-1 text-sm text-gray-600 placeholder-gray-400 "
+          className={`pl-5 bg-transparent outline-none text-sm  ${
+            show ? 'text-gray-600 placeholder-gray-400' : 'placeholder-white text-white'
+          }`}
           type="text"
           placeholder={placeholder || 'Начать поиск'}
         />
         <SearchIcon
           onClick={search}
-          className="hidden md:inline-flex h-8 bg-red-400 text-white rounded-full p-2 cursor-pointer md:mx-2 "
+          className="h-8 bg-red-400 text-white rounded-full p-2 cursor-pointer mx-2 "
         />
       </div>
 
-      <div className="flex items-center justify-end text-gray-500 space-x-2 ">
-        <p className="hidden md:inline cursor-pointer">Сдайте жилье </p>
+      <div
+        className={`hidden sm:flex flex-1 items-center justify-end space-x-2 ${
+          show ? 'text-gray-500' : 'text-white'
+        }`}
+      >
+        <p className="pl-2 text-xs sm:text-sm md:text-md cursor-pointer">Сдайте жилье </p>
         <GlobeAltIcon className="h-5 md:h-6 cursor-pointer" />
 
-        <div className="flex items-center space-x-2 border-2 p-0.5 md:p-2 rounded-full">
-          <MenuIcon className="h-4 md:h-6" />
-          <UserCircleIcon className="h-4 md:h-6" />
+        <div className="flex items-center space-x-2 border-2 p-1 md:p-2 rounded-full">
+          <MenuIcon className="h-5 md:h-6" />
+          <UserCircleIcon className="h-5 md:h-6" />
         </div>
       </div>
 
