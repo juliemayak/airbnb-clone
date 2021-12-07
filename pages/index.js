@@ -19,7 +19,7 @@ export default function Home({ exploreData, cardsData, todoData }) {
           rel="stylesheet"
         />
       </Head>
-      <Header />
+      <Header searchPage={false} />
       <Banner />
 
       <main className="max-w-7xl mx-auto px-8 sm:px-16">

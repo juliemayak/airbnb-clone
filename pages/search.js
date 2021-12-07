@@ -35,9 +35,10 @@ function Search({ searchResults }) {
     <div>
       <Header
         placeholder={`${location} | ${range} | ${guestsNum} ${guestsNum == 1 ? 'гость' : 'гостей'}`}
+        searchPage={true}
       />
 
-      <div className="flex justify-evenly my-5 space-x-1 sm:space-x-3 mx-6 text-gray-800 no-wrap font-light text-sm">
+      <div className="flex justify-evenly my-5 space-x-1 sm:space-x-3 mx-6 text-gray-800 no-wrap font-light text-sm mt-[110px]">
         <p className="button">Цена</p>
         <p className="button">Тип жилья</p>
         <p className="button">Бесплатная отмена</p>

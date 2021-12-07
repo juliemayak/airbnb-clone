@@ -14,7 +14,7 @@ import 'react-date-range/dist/theme/default.css';
 import { DateRange } from 'react-date-range';
 import { ru } from 'date-fns/locale';
 
-function Header({ placeholder }) {
+function Header({ placeholder, searchPage }) {
   const [searchInput, setSearchInput] = useState('');
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -53,8 +53,9 @@ function Header({ placeholder }) {
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
+      if (window.scrollY > 20) {
         setShow(true);
+        setSearchInput('');
       } else setShow(false);
     });
     return () => {
@@ -64,12 +65,13 @@ function Header({ placeholder }) {
 
   return (
     <header
-      className={`fixed flex justify-center top-0 z-50  px-5 py-2 md:py-4 md:px-10 w-full ${
-        show && 'bg-white shadow-md transition-all ease-in'
-      }`}
+      className={`
+      fixed flex top-0 z-50 px-5 py-2 md:py-4 md:px-10 w-full transition-all ease-in duration-300 justify-between
+      ${(show || searchPage) && 'bg-white shadow-md '}
+      `}
     >
-      <div className="relative sm:flex-1 h-7 cursor-pointer my-auto">
-        {show ? (
+      <div className="relative sm:w-[150px] h-7 cursor-pointer my-auto">
+        {show || searchPage ? (
           <Image
             src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg"
             layout="fill"
@@ -88,12 +90,14 @@ function Header({ placeholder }) {
         )}
       </div>
 
-      <div className="flex flex-1 rounded-full py-2 border-2 shadow-sm justify-between">
+      <div className="flex flex-1 rounded-full py-2 border-2 shadow-sm justify-between max-w-[600px]">
         <input
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
-          className={`pl-5 bg-transparent outline-none text-sm  ${
-            show ? 'text-gray-600 placeholder-gray-400' : 'placeholder-white text-white'
+          className={`pl-5 bg-transparent outline-none text-sm w-11/12 ${
+            show || searchPage
+              ? 'text-gray-600 placeholder-gray-400'
+              : 'placeholder-white text-white'
           }`}
           type="text"
           placeholder={placeholder || 'Начать поиск'}
@@ -105,11 +109,11 @@ function Header({ placeholder }) {
       </div>
 
       <div
-        className={`hidden sm:flex flex-1 items-center justify-end space-x-2 ${
-          show ? 'text-gray-500' : 'text-white'
+        className={`hidden sm:flex w-[250px] items-center justify-end space-x-2 ${
+          show || searchPage ? 'text-gray-500' : 'text-white'
         }`}
       >
-        <p className="pl-2 text-xs sm:text-sm md:text-md cursor-pointer">Сдайте жилье </p>
+        <p className=" pl-2 text-xs sm:text-sm md:text-md cursor-pointer">Сдайте жилье</p>
         <GlobeAltIcon className="h-5 md:h-6 cursor-pointer" />
 
         <div className="flex items-center space-x-2 border-2 p-1 md:p-2 rounded-full">
@@ -119,7 +123,7 @@ function Header({ placeholder }) {
       </div>
 
       {searchInput && (
-        <div className="flex flex-col col-span-3 mx-auto ">
+        <div className="flex absolute top-[70px] flex-col mx-auto bg-white rounded-lg shadow-md left-[50%] sm:left-[45%] md:left-[46%] lg:left-[48%] transform -translate-x-2/4">
           <DateRange
             ranges={[selectionRange]}
             minDate={new Date()}
@@ -128,21 +132,30 @@ function Header({ placeholder }) {
             locale={ru}
           />
           <div className="flex items-center border-b mb-4 ">
-            <h2 className="text-lg pl-5 flex-grow font-light">Количество гостей</h2>
-            <UsersIcon className="h-5" />
+            <h2 className="text-sm pl-5 pb-1 flex-grow font-light">Количество гостей</h2>
+            <UsersIcon className="h-4" />
             <input
               type="number"
-              className="w-12 pl-2 text-lg outline-none text-red-400"
+              className="w-12 pl-2 text-sm outline-none text-red-400"
               value={guestsNum}
               onChange={(e) => setGuestsNum(e.target.value)}
               min={1}
             />
           </div>
-          <div className="flex">
-            <button onClick={resetInput} className="flex-grow text-gray-500">
+          <div className="flex text-sm -mt-4">
+            <button
+              onClick={resetInput}
+              className="flex-grow text-gray-500 hover:bg-red-400 transition-all p-2 rounded-sm ease-in-out duration-250
+              "
+            >
               Отменить
             </button>
-            <button onClick={search} className="flex-grow text-red-400">
+            <button
+              onClick={search}
+              className="flex-grow text-red-400
+            hover:bg-red-400 hover:text-gray-500 transition-all ease-in-out duration-250
+            "
+            >
               Искать
             </button>
           </div>
