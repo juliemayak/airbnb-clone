@@ -12,7 +12,7 @@ function InfoCard({ img, title, description, location, price, star, totalPrice }
       <div className="flex flex-col flex-grow sm:pl-5">
         <div className="flex justify-between pt-5">
           <p className="text-xs text-gray-500 font-extralight">{location}</p>
-          <HeartIcon className="h-7 cursor-pointer md:h-5 sm:h-4 xs:h-3" />
+          <HeartIcon className="h-3 cursor-pointer md:h-5 sm:h-4" />
         </div>
         <h4
           className="text-lg text--gray-800 font-light

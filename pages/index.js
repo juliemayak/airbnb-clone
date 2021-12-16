@@ -7,6 +7,8 @@ import LargeCard from '../components/LargeCard';
 import TodoCards from '../components/TodoCards';
 import Footer from '../components/Footer';
 import Contacts from '../components/Contacts';
+import { SearchIcon, UserIcon } from '@heroicons/react/solid';
+import { HeartIcon } from '@heroicons/react/outline';
 
 export default function Home({ exploreData, cardsData, todoData }) {
   return (
@@ -58,6 +60,32 @@ export default function Home({ exploreData, cardsData, todoData }) {
             ))}
           </div>
         </section>
+        {/* bottom fixed mobile header */}
+        <div className="fixed flex justify-center items-center space-x-12 sm:hidden bg-white h-14 bottom-0 w-full border-t-[1px] border-gray-300">
+          <div
+            className="flex flex-col justify-center"
+            onClick={() => {
+              router.push({
+                pathname: '/'
+              });
+            }}
+          >
+            <SearchIcon className="h-6 text-red-400 cursor-pointer" />
+            <span className="text-xs font-extralight">Поиск</span>
+          </div>
+          <div className="flex flex-col justify-center">
+            <HeartIcon className="h-6 text-gray-400 cursor-pointer active:text-red-400" />
+            <span className="text-xs font-extralight">Вишлисты</span>
+          </div>
+          <div className="flex flex-col justify-center">
+            <UserIcon
+              className="h-6 text-gray-400 cursor-pointer
+            active:text-red-400
+            "
+            />
+            <span className="text-xs font-extralight">Войти</span>
+          </div>
+        </div>
       </main>
       <div className="bg-gray-100 text-gray-600 border-t-2">
         <div className="w-11/12 m-auto ">
