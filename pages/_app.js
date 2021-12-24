@@ -1,21 +1,38 @@
 import 'tailwindcss/tailwind.css';
 import '../styles/global.css';
+import '../styles/customizedNProgress.css';
 import Router from 'next/router';
-import ProgressBar from '@badrap/bar-of-progress';
-
-const progress = new ProgressBar({
-  size: 3,
-  color: '#FE595E',
-  className: 'z-50',
-  delay: 70
-});
-
-Router.events.on('routeChangeStart', progress.start);
-Router.events.on('routeChangeComplete ', progress.finish);
-Router.events.on('routeChangeError', progress.finish);
+import NProgress from 'nprogress';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  NProgress.configure({
+    showSpinner: false,
+    easing: 'ease',
+    speed: 1300
+  });
+  Router.events.on('routeChangeStart', () => {
+    NProgress.start();
+  });
+
+  Router.events.on('routeChangeComplete', () => {
+    NProgress.done();
+  });
+
+  return (
+    <>
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css"
+          integrity="sha512-42kB9yDlYiCEfx2xVwq0q7hT4uf26FUgSIZBK8uiaEnTdShXjwr8Ip1V4xGJMg3mHkUt9nNuTDxunHF0/EgxLQ=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
+      </Head>
+      <Component {...pageProps} />;
+    </>
+  );
 }
 
 export default MyApp;
