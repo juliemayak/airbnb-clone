@@ -100,10 +100,13 @@ function Header({ placeholder, searchPage }) {
               : 'placeholder-white text-white'
           }`}
           type="text"
-          placeholder={placeholder || 'Начать поиск'}
+          placeholder={placeholder || 'Начать поиск | Москва – Санкт-Петербург – Казань'}
         />
         <SearchIcon
-          onClick={search}
+          onClick={() => {
+            search();
+            resetInput();
+          }}
           className="h-8 bg-red-400 text-white rounded-full p-2 cursor-pointer mx-2 "
         />
       </div>
@@ -151,7 +154,10 @@ function Header({ placeholder, searchPage }) {
               Отменить
             </button>
             <button
-              onClick={search}
+              onClick={() => {
+                search();
+                resetInput();
+              }}
               className="flex-grow text-red-400
             hover:bg-red-400 hover:text-gray-500 transition-all ease-in-out duration-250
             "

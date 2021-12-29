@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import { getCenter } from 'geolib';
 import PopupCard from './PopupCard';
@@ -22,6 +22,17 @@ function Map({ searchResults }) {
     longitude: center.longitude,
     zoom: 11
   });
+
+  //we need to change viewport because coordinates change
+  useEffect(() => {
+    setViewport({
+      width: '100%',
+      height: '100%',
+      latitude: center.latitude,
+      longitude: center.longitude,
+      zoom: 11
+    });
+  }, [searchResults]);
 
   return (
     <ReactMapGL
