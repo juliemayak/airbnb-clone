@@ -9,12 +9,12 @@ function Banner() {
         layout="fill"
         objectFit="cover"
       />
-      <div className="absolute top-2/3 w-full text-center">
+      <div className="absolute top-1/2 md:top-2/3 w-full text-center">
         <p className="text-white text-sm sm:text-lg md:text-xl font-semibold">
           Не знаете, куда поехать? <br /> Отлично.
         </p>
         <button className="bg-white px-10 py-4 shadow-md rounded-full font-bold my-3 cursor-pointer hover:shadow-xl active:scale-90 transition duration-150">
-          <span className="text-transparent bg-clip-text  bg-gradient-to-r from-purple-700 via-pink-600 to-red-600">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-pink-600 to-red-600">
             Гибкий поиск
           </span>
         </button>
