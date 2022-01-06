@@ -59,7 +59,7 @@ function Search({ searchResults }) {
             <Image src="/notFound.jpeg" layout="fill" objectFit="cover" />
           </div>
         )}
-        <section className="flex-grow px-6">
+        <section className="flex-grow px-2">
           {searchResults.length ? (
             <p className="text-xs text-gray-800 pb-3 pl-3 font-extralight">{`${location}: больше 300 вариантов жилья | гостей: ${guestsNum} | ${range} г.
           `}</p>
@@ -93,7 +93,7 @@ function Search({ searchResults }) {
         </section>
 
         {searchResults.length && (
-          <section className="hidden lg:flex lg:min-w-[550px]">
+          <section className="hidden lg:flex lg:w-[40%]">
             <Map searchResults={searchResults} />
           </section>
         )}
