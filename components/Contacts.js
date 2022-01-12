@@ -6,7 +6,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 
 function Contacts() {
   return (
-    <div className="grid-cols-2 xl:grid-cols-4 pt-4 space-y-3 bg-gray-100 text-gray-600 border-t-2 py-6">
+    <div className="grid-cols-2 xl:grid-cols-4 pt-4 pb-10 space-y-3 bg-gray-100 text-gray-600 border-t-2 py-6">
       <div className="ml-3 text-xs md:text-sm mb-6">
         <p className="space-x-3 pb-3 ml-3">&copy; 2021 Airbnb, Inc.</p>
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 cursor-pointer ml-3">
