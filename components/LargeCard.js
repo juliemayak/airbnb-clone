@@ -2,13 +2,13 @@ import Image from 'next/image';
 
 function LargeCard({ img, title, description, buttonText }) {
   return (
-    <section className="relative my-16 cursor-pointer">
-      <div className="relative min-w-[300px] h-[400px]">
-        <Image src={img} layout="fill" objectFit="cover" className="rounded-2xl" />
+    <section className="flex flex-col sm:relative my-16 cursor-pointer ">
+      <div className="relative w-fit h-[250px] sm:h-[400px]">
+        <Image src={img} layout="fill" objectFit="cover" className="rounded-t-2xl sm:rounded-2xl" />
       </div>
 
-      <div className="absolute top-20 left-16">
-        <h3 className="text-5xl mb-3 text-white w-64">{title}</h3>
+      <div className="bg-[#292929] sm:bg-transparent rounded-b-2xl p-5 sm:absolute sm:top-20 sm:left-10">
+        <h3 className="text-3xl sm:text-5xl mb-3 text-white w-64">{title}</h3>
         <p className="text-white">{description}</p>
         <button className="text-lg bg-white px-7 py-3 rounded-lg mt-5">{buttonText}</button>
       </div>
@@ -17,5 +17,3 @@ function LargeCard({ img, title, description, buttonText }) {
 }
 
 export default LargeCard;
-
-//https://a0.muscache.com/im/pictures/791aba62-2de8-4722-99b5-45838715eb34.jpg?im_w=720

@@ -12,7 +12,7 @@ import { HeartIcon } from '@heroicons/react/outline';
 
 export default function Home({ exploreData, cardsData, todoData }) {
   return (
-    <div className="">
+    <div className="w-full">
       <Head>
         <title>Airbnb: жилье для отпуска, домики, дома на пляже, ...</title>
         <link rel="icon" href="https://icon-library.com/images/airbnb-icon/airbnb-icon-18.jpg" />
@@ -36,7 +36,7 @@ export default function Home({ exploreData, cardsData, todoData }) {
 
         <section>
           <h2 className="text-2xl font-semibold py-5">Живите где угодно</h2>
-          <div className="flex space-x-3 overflow-scroll scrollbar-hide p-3.5 -ml-3">
+          <div className="flex space-x-3 overflow-scroll scrollbar-hide p-3.5">
             {cardsData?.map(({ img, title }) => (
               <MediumCard key={title} img={img} title={title} />
             ))}
@@ -45,11 +45,7 @@ export default function Home({ exploreData, cardsData, todoData }) {
         <LargeCard
           img="https://a0.muscache.com/im/pictures/5b4dc94a-0b4c-4c27-b50f-9c5a5b93c775.jpg?im_w=1440"
           title="Принимать гостей"
-          description={
-            <>
-              Открывайте новые возможности <br /> и получайте доход, сдавая жилье.
-            </>
-          }
+          description={<>Открывайте новые возможности и получайте доход, сдавая жилье.</>}
           buttonText="Подробнее"
         />
         <section>
@@ -61,7 +57,7 @@ export default function Home({ exploreData, cardsData, todoData }) {
           </div>
         </section>
         {/* bottom fixed mobile header */}
-        <div className="fixed flex justify-center items-center space-x-12 sm:hidden bg-white h-14 bottom-0 w-full border-t-[1px] border-gray-300">
+        <div className="fixed flex left-0 justify-center items-center space-x-12 sm:hidden bg-white h-14 bottom-0 w-full border-t-[1px] border-gray-300">
           <div
             className="flex flex-col justify-center"
             onClick={() => {
@@ -87,7 +83,7 @@ export default function Home({ exploreData, cardsData, todoData }) {
           </div>
         </div>
       </main>
-      <div className="bg-gray-100 text-gray-600 border-t-2">
+      <div className="w-full bg-gray-100 text-gray-600 border-t-2">
         <div className="w-11/12 m-auto ">
           <Footer />
           <Contacts />

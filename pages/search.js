@@ -99,7 +99,7 @@ function Search({ searchResults }) {
         )}
 
         {/* bottom fixed mobile header */}
-        <div className="fixed flex justify-center items-center space-x-12 sm:hidden bg-white h-14 bottom-0 w-full border-t-[1px] border-gray-300">
+        <div className="fixed w-full flex justify-center items-center space-x-12 sm:hidden bg-white h-14 bottom-0  border-t-[1px] border-gray-300">
           <div
             className="flex flex-col justify-center"
             onClick={() => {

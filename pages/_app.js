@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }) {
           referrerPolicy="no-referrer"
         />
       </Head>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </>
   );
 }
